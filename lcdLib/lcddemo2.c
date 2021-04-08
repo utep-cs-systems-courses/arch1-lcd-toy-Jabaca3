@@ -5,6 +5,7 @@
 #include <libTimer.h>
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include "stdio.h"
 
 /** Initializes everything, clears the screen, draws "hello" and a square */
 int
@@ -14,7 +15,7 @@ main()
   lcd_init();
   u_char width = screenWidth, height = screenHeight;
 
-  clearScreen(COLOR_BLUE);
+  clearScreen(COLOR_WHITE);
 
   drawString5x7(20,20, "hello", COLOR_GREEN, COLOR_RED);
 
@@ -22,8 +23,16 @@ main()
   u_char offset_r=100, offset_c=50;
   for(int r=0; r<50; r++){
     for (int c=0; c<=r; c++){
-	drawPixel(offset_c+c, offset_r-r, COLOR_ORANGE);
-	drawPixel(offset_c-c, offset_r-r, COLOR_ORANGE);
-      }
+    drawPixel(offset_c+c, offset_r-r, COLOR_ORANGE);
+    drawPixel(offset_c-c, offset_r-r, COLOR_ORANGE);
+    }
   }
 }
+
+
+
+
+
+
+
+
