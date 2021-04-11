@@ -11848,5 +11848,5 @@ int main(){
 	drawPixel(118,37,0x636E);
 	drawPixel(118,38,0x5B2E);
 	drawPixel(118,39,0x5B4E);
-	drawPixel(118,40,0x7E1D);
+	drawPixel(118,40,0x7E1D)
 }
