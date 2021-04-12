@@ -7,84 +7,68 @@
 #include "lcdutils.h"
 #include "lcddraw.h"
 
-char toggle_red()		/* always toggle! */
-{
-  static char state = 0;
+static int offsetX = 30;
+static int offsetY = 30;
 
-  switch (state) {
-  case 0:
-    red_on = 1;
-    state = 1;
-    break;
-  case 1:
-    red_on = 0;
-    state = 0;
-    break;
-  }
-  return 1;			/* always changes an led */
-}
+void buzzer_state_advance(){
 
-char toggle_green()	/* only toggle green if red is on!  */
-{
-  char changed = 0;
-  if (red_on) {
-    green_on ^= 1;
-    changed = 1;
-  }
-  return changed;
 }
 
 void state_advance(){
-
-}
-
-
-void buzzer_state_advance(){
+  fillRectangle(offsetX, offsetY, 60, 60, COLOR_RED);
    if(switch_state_down_1){
-    static char buzz_state= 0;
-    u_char width = screenWidth, height = screenHeight;
-    clearScreen(COLOR_BLUE);
-    drawString5x7(20,20, "hello", COLOR_GREEN, COLOR_RED);
-    fillRectangle(30,30, 60, 60, COLOR_ORANGE);
-    switch(buzz_state){
-    case 0: buzzer_set_period(3822); red_on=0; green_on=1; buzz_state++; break;
+    static char buzz_state= 0; 
+    clearScreen(COLOR_WHITE);
+    offsetX-=10;
+    drawString5x7(0,0, "Switch1 LEFT", BLACK, WHITE);
+    /*switch(buzz_state){
+    case 0: //buzzer_set_period(3822); red_on=0; green_on=1; buzz_state++; break;
     case 1: buzzer_set_period(3214); red_on=0; green_on=1; buzz_state++; break;
     case 2: buzzer_set_period(2551); red_on=0; green_on=1; buzz_state=0; break;
     default: buzz_state =0;
-    }
+    }*/
   }
   else if(switch_state_down_2){
+    clearScreen(WHITE);
+    offsetY+=10;
+    drawString5x7(0,0, "Switch2 DOWN", BLACK, WHITE);
     static char buzz_state= 0;
-    switch(buzz_state){
+    /*switch(buzz_state){
     case 0: buzzer_set_period(3822); red_on=1; green_on=0; buzz_state++; break;
     case 1: buzzer_set_period(3214); red_on=1; green_on=0; buzz_state++; break;
     case 2: buzzer_set_period(2551); red_on=1; green_on=0; buzz_state=0; break;
     default: buzz_state =0;
-    }
+    }*/
   }
   else if(switch_state_down_3){
     static char buzz_state= 0;
-    switch(buzz_state){
+    offsetY-=10;
+    clearScreen(WHITE);
+    drawString5x7(0,0, "Switch3 UP", BLACK, WHITE);
+    /*switch(buzz_state){
     case 0: buzzer_set_period(3822); red_on=1; green_on=0; buzz_state++; break;
     case 1: buzzer_set_period(3214); red_on=0; green_on=1; buzz_state++; break;
     case 2: buzzer_set_period(2551); red_on=1; green_on=0; buzz_state=0; break;
     default: buzz_state =0;
-    }
+    }*/
   }
   else if(switch_state_down_4){
     static char buzz_state= 0;
-    switch(buzz_state){
+    clearScreen(WHITE);
+    offsetX+=10;
+    drawString5x7(0,0, "Switch4 RIGHT", BLACK, WHITE);
+    /*switch(buzz_state){
     case 0: buzzer_set_period(3822); red_on=1; green_on=1; buzz_state++; break;
     case 1: buzzer_set_period(3214); red_on=1; green_on=1; buzz_state++; break;
-    case 2: buzzer_set_period(2551); red_on=1; green_on=1; buzz_state =0;break;
+    case 2: buzzer_set_period(2551); red_on=1; green_on=1; buzz_state=0; break;
     default: buzz_state =0;
-    }
-  } else {
+    }*/
+  }
+  else {
       buzzer_set_period(0);
-    }
+      }
   led_changed=1;
   led_update();
-  
   }
 
 

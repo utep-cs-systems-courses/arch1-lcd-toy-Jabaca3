@@ -40,9 +40,6 @@ lcddemo.elf: lcddemo.o libLcd.a
 lcddemo2.elf: lcddemo2.o libLcd.a
 	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@ -lTimer
 
-lcdProject.elf: lcdProject.o libLcd.a blink.elf
-	$(CC) $(CFLAGS) $(LDFLAGS1) $^ -o $@ -lTimer
-
 load: lcddemo.elf
 	msp430loader.sh $^
 
@@ -50,4 +47,4 @@ load2: lcddemo2.elf
 	msp430loader.sh $^
 
 load3: blink.elf
-	msp430loader.sh blink.elf $^
+	msp430loader.sh blink.elf
