@@ -6,19 +6,48 @@
 #include "switches.h"
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include <abCircle.h>
+#include <shape.h>
 
-static int offsetX = 30;
-static int offsetY = 30;
+static int offsetX =25;
+static int offsetY =50;
+
+void my_shape(u_int color){
+  fillRectangle(offsetX+1, offsetY+15, 50, 20, color);
+  fillRectangle(offsetX+15, offsetY+1, 20, 50, color);
+  
+  // Left Arrow
+  int offsetXTL= offsetX;     // X Triangle Left
+  int offsetYTL= offsetY*2-1; // Y Triangle Left
+
+  // Right Arrow
+  int offsetXTR= offsetX*3;   // X Triangle Right
+  int offsetYTR= offsetY; // Y Triangle Right
+  
+  for(int r=0; r<25; r++){
+    for(int c=0; c<=r; c++){
+      
+      // Left Arrow
+      drawPixel(offsetX-c, offsetY+r, color);
+      drawPixel(offsetXTL-c, offsetYTL-r, color);
+
+      // Right Arrow
+      drawPixel(offsetXTR+c, offsetYTL-r, color);
+      drawPixel(offsetXTR+c, offsetYTR+r, color);
+    }
+  }
+}
 
 void buzzer_state_advance(){
 
 }
 
 void state_advance(){
-  fillRectangle(offsetX, offsetY, 60, 60, COLOR_RED);
+  
+  my_shape(COLOR_RED);
    if(switch_state_down_1){
     static char buzz_state= 0; 
-    clearScreen(COLOR_WHITE);
+    //clearScreen(COLOR_WHITE);
     offsetX-=10;
     drawString5x7(0,0, "Switch1 LEFT", BLACK, WHITE);
     /*switch(buzz_state){

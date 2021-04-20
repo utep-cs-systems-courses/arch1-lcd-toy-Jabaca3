@@ -14,7 +14,7 @@ int main(void) {
   switch_init();
   lcd_init();
   clearScreen(WHITE);
-  fillRectangle(30, 30, 60, 60, COLOR_RED);
+  // fillRectangle(30, 30, 60, 60, COLOR_RED);
   buzzer_set_period(0);
   enableWDTInterrupts();	/* enable periodic interrupt */
   or_sr(0x18);		/* CPU off, GIE on */
