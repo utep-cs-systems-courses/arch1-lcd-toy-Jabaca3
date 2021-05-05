@@ -18,10 +18,10 @@ void my_shape(u_int color){
   
   // Left Arrow
   int offsetXTL= offsetX;     // X Triangle Left
-  int offsetYTL= offsetY*2-1; // Y Triangle Left
+  int offsetYTL= offsetY+49; // Y Triangle Left
 
   // Right Arrow
-  int offsetXTR= offsetX*3;   // X Triangle Right
+  int offsetXTR= offsetX+50;   // X Triangle Right
   int offsetYTR= offsetY; // Y Triangle Right
   
   for(int r=0; r<25; r++){
@@ -47,7 +47,7 @@ void state_advance(){
   my_shape(COLOR_RED);
    if(switch_state_down_1){
     static char buzz_state= 0; 
-    //clearScreen(COLOR_WHITE);
+    my_shape(COLOR_WHITE);
     offsetX-=10;
     drawString5x7(0,0, "Switch1 LEFT", BLACK, WHITE);
     /*switch(buzz_state){
@@ -58,7 +58,7 @@ void state_advance(){
     }*/
   }
   else if(switch_state_down_2){
-    clearScreen(WHITE);
+    my_shape(COLOR_WHITE);
     offsetY+=10;
     drawString5x7(0,0, "Switch2 DOWN", BLACK, WHITE);
     static char buzz_state= 0;
@@ -71,8 +71,8 @@ void state_advance(){
   }
   else if(switch_state_down_3){
     static char buzz_state= 0;
+    my_shape(COLOR_WHITE);
     offsetY-=10;
-    clearScreen(WHITE);
     drawString5x7(0,0, "Switch3 UP", BLACK, WHITE);
     /*switch(buzz_state){
     case 0: buzzer_set_period(3822); red_on=1; green_on=0; buzz_state++; break;
@@ -83,7 +83,7 @@ void state_advance(){
   }
   else if(switch_state_down_4){
     static char buzz_state= 0;
-    clearScreen(WHITE);
+    my_shape(COLOR_WHITE);
     offsetX+=10;
     drawString5x7(0,0, "Switch4 RIGHT", BLACK, WHITE);
     /*switch(buzz_state){
