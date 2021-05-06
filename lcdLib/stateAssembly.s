@@ -1,25 +1,32 @@
 #include "lcddraw.h"	
-	
-	.file "stateAssembly.c"
-.text
-	.global update_state
-	.word default
-	.word Case1
-	.word Case2
-	.word Case3
+#include "switches.h"
+#include "lcdutils.h"
+#include "stateAssembly.h"
 
-Case1:
-	call
-	jmp n
-Case2:
-	call
-	jmp n
-Case3:
-	call
-	jmp n
+
+jt:
+	.word case1
+	.word case2
+	.word case3
+	.word case4
+	.text	
+	.global state_advance
+	.global buzzer_state_advance
 	
-default:
-	call
+state_advance:
+	mov 0x001f, r12		;moving COLOR_RED into r12
+	Call #my_shape		;testing making shape with r12
 	
-n:
+buzzer_state_advance:
+	jmp end
+	
+case1:
+	jmp end
+case2:
+	jmp end
+case3:
+	jmp end
+case4:
+	jmp end
+end:
 	ret

@@ -9,34 +9,6 @@
 #include <abCircle.h>
 #include <shape.h>
 
-static int offsetX =25;
-static int offsetY =50;
-
-void my_shape(u_int color){
-  fillRectangle(offsetX+1, offsetY+15, 50, 20, color);
-  fillRectangle(offsetX+15, offsetY+1, 20, 50, color);
-  
-  // Left Arrow
-  int offsetXTL= offsetX;     // X Triangle Left
-  int offsetYTL= offsetY+49; // Y Triangle Left
-
-  // Right Arrow
-  int offsetXTR= offsetX+50;   // X Triangle Right
-  int offsetYTR= offsetY; // Y Triangle Right
-  
-  for(int r=0; r<25; r++){
-    for(int c=0; c<=r; c++){
-      
-      // Left Arrow
-      drawPixel(offsetX-c, offsetY+r, color);
-      drawPixel(offsetXTL-c, offsetYTL-r, color);
-
-      // Right Arrow
-      drawPixel(offsetXTR+c, offsetYTL-r, color);
-      drawPixel(offsetXTR+c, offsetYTR+r, color);
-    }
-  }
-}
 
 void buzzer_state_advance(){
 

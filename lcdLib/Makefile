@@ -11,11 +11,20 @@ AR              = msp430-elf-ar
 
 
 all: libLcd.a lcddemo.elf blink.elf
-
 libLcd.a: font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o
 	$(AR) crs $@ $^
 
+
+# Compiler for graphics (non assembly) 
+
 blink.elf: ${COMMON_OBJECTS} blinkMain.o stateMachines.o led.o buzzer.o switches.o p1_interrupt_handler.o wdInterruptHandler.o ../lib/libTimer.a font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o
+	${CC} ${CFLAGS} ${LDFLAGS} ${LDFLAGS1} -o $@ $^
+
+
+
+#Compiler for assembly code
+
+blink1.elf: ${COMMON_OBJECTS} blinkMain.o stateAssembly.o led.o buzzer.o switches.o p1_interrupt_handler.o wdInterruptHandler.o ../lib/libTimer.a font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o
 	${CC} ${CFLAGS} ${LDFLAGS} ${LDFLAGS1} -o $@ $^
 
 lcddraw.o: lcddraw.c lcddraw.h lcdutils.h
@@ -25,6 +34,7 @@ buzzer.o: buzzer.h
 switches.o: switches.h
 wdInterruptHandler.o: stateMachines.h
 stateMachines.o: led.h stateMachines.h buzzer.h switches.h
+stateAssembly.o: stateAssembly.h
 
 install: libLcd.a
 	mkdir -p ../h ../lib
@@ -48,3 +58,6 @@ load2: lcddemo2.elf
 
 load3: blink.elf
 	msp430loader.sh blink.elf
+
+load4: blink1.elf
+	msp430loader.sh blink1.elf
