@@ -11,9 +11,4 @@ __interrupt_vec(WDT_VECTOR) WDT(){	/* 250 interrupts/sec */
     state_advance();
     blink_count = 0;
   }
-
-  if(++buzz_count == 125){
-    buzzer_state_advance();
-    buzz_count = 0;
-  }
 }

@@ -9,6 +9,23 @@ int offsetX = 25;
 int offsetY = 50;
 
 
+void move_shape_Left(int x){
+  my_shape(COLOR_WHITE);
+    offsetX-=x;
+}
+void move_shape_Right(int x){
+  my_shape(COLOR_WHITE);
+  offsetX+=x;
+}
+void move_shape_Up(int y){
+  my_shape(COLOR_WHITE);
+  offsetY-=y; 
+}
+void move_shape_Down(int y){
+  my_shape(COLOR_WHITE);
+  offsetY+=y; 
+}
+
 void my_shape(u_int color){
   fillRectangle(offsetX+1, offsetY+15, 50, 20, color);
   fillRectangle(offsetX+15, offsetY+1, 20, 50, color);
