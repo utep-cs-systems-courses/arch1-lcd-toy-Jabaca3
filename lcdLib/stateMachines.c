@@ -20,7 +20,7 @@ void state_advance(){
    if(switch_state_down_1){
     static char buzz_state= 0; 
     move_shape_Left(10);
-    drawString5x7(0,0, "Switch1 LEFT", BLACK, WHITE);
+    drawString5x7(0,0, "Switch1 LEFT, JOSEPH", BLACK, WHITE);
     /*switch(buzz_state){
     case 0: //buzzer_set_period(3822); red_on=0; green_on=1; buzz_state++; break;
     case 1: buzzer_set_period(3214); red_on=0; green_on=1; buzz_state++; break;
